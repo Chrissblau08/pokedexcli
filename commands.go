@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"os"
 	"sort"
+	"strings"
 )
 
 var pokedex = make(map[string]PokemonCatch)
@@ -20,8 +21,9 @@ type cliCommand struct {
 }
 
 type Config struct {
-	Next     string
-	Previous string
+	Next            string
+	Previous        string
+	CurrentLocation string
 }
 
 // Command: Map
@@ -80,6 +82,8 @@ func commandExplore(cfg *Config, args ...string) error {
 		return err
 	}
 
+	cfg.CurrentLocation = areaName
+
 	fmt.Println("Found Pokemon:")
 	for _, pokemon := range pokemonEncounters {
 		fmt.Println(" - " + pokemon)
@@ -108,6 +112,21 @@ func commandCatch(cfg *Config, args ...string) error {
 	}
 
 	pokemonName := args[0]
+
+	pokemonEncounters, err := getPokemonEncountersbyLocationArea(cfg.CurrentLocation)
+	if err != nil {
+		return err
+	}
+
+	pokemonEncountersSet := make(map[string]struct{})
+	for _, p := range pokemonEncounters {
+		pokemonEncountersSet[strings.ToLower(p)] = struct{}{}
+	}
+
+	if _, ok := pokemonEncountersSet[pokemonName]; !ok {
+		return fmt.Errorf("pokémon %s is not available at your current location %s", pokemonName, cfg.CurrentLocation)
+	}
+
 	fmt.Println("Throwing a Pokeball at " + pokemonName + "...")
 
 	pokemonObject, err := getPokemonByNameInfo(pokemonName)
