@@ -20,10 +20,10 @@ Der `tee repl.log` Teil speichert die komplette Session zusätzlich in eine Log-
 
 | Command   | Beschreibung                                                                  |
 | --------- | ----------------------------------------------------------------------------- |
-| `exit`    | Beendet die Pokedex                                                           |
+| `exit`    | Beendet das Abenteuer                                                         |
 | `help`    | Zeigt diese Hilfeseite an                                                     |
-| `map`     | Zeigt die Namen von 20 Locations in der Pokémon-Welt an                       |
-| `mapb`    | Zeigt die vorherigen 20 Locations an                                          |
+| `map`     | Zeigt die Namen von 20 Locations in der Pokémon-Welt an (vorwärts)            |
+| `mapb`    | Zeigt die vorherigen 20 Locations an (rückwärts)                              |
 | `explore` | Listet alle Pokémon auf, die an der aktuellen Location gefunden werden können |
 | `catch`   | Fängt ein Pokémon und fügt es deiner Pokedex hinzu                            |
 | `inspect` | Zeigt Details eines Pokémon an (Name, Größe, Gewicht, Stats, Typen)           |
@@ -38,7 +38,7 @@ Der `tee repl.log` Teil speichert die komplette Session zusätzlich in eine Log-
 - Pallet Town
 - Viridian City
 ...
-> explore
+> explore Pallet Town
 - Bulbasaur
 - Charmander
 ...
