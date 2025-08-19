@@ -1,6 +1,7 @@
 # Pokémon CLI Pokedex
 
 Ein interaktives Command-Line Interface (CLI), um Pokémon zu erkunden, zu fangen und deine eigene Pokedex zu verwalten.
+Dieses Projekt ist ein begelitendes Projekt mit der Plattform boot.dev. Kurs: Build a Pokedex in Go
 
 ---
 
