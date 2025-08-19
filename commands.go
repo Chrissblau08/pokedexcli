@@ -178,6 +178,23 @@ func commandExit(cfg *Config, args ...string) error {
 	return nil
 }
 
+func commandPokedex(cfg *Config, args ...string) error {
+	keys := make([]string, 0, len(pokedex))
+	for k := range pokedex {
+		keys = append(keys, k)
+	}
+
+	if len(keys) == 0 {
+		return fmt.Errorf("your Pokedex is empty :C")
+	}
+
+	fmt.Println("Your Pokedex:")
+	for _, pokemonName := range keys {
+		fmt.Println(" - " + pokemonName)
+	}
+	return nil
+}
+
 // Zuerst die Map deklarieren (leer)
 var commands map[string]cliCommand
 
@@ -217,6 +234,11 @@ func init() {
 			name:        "inspect",
 			description: "It takes the name of a Pokemon and prints the name, height, weight, stats and type(s) of the Pokemon",
 			callback:    commandInspect,
+		},
+		"pokedex": {
+			name:        "pokedex",
+			description: "Prints a list of all the names of the Pokemon the user has caught",
+			callback:    commandPokedex,
 		},
 	}
 }
